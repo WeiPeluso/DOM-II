@@ -58,11 +58,36 @@ const zoom = (event) => {
   //drag / drop
 // drag and drop the bus image under the welcome section
 
-const img1=document.querySelector(".image-content dragImg1")
-const img2=document.querySelector(".image-content dragImg2")
-console.log(img1);
-console.log(img2);
-/*
+const img1Container=document.querySelector(".img-content.img1")
+const img2Container=document.querySelector(".img-content.img2")
+
+console.log(img1Container)
+/* Events fired on the drag target */
+
+img1Container.addEventListener("dragover", function(event) {
+  event.preventDefault();
+});
+img2Container.addEventListener("dragover", function(event) {
+  event.preventDefault();
+});
+
+img1Container.addEventListener('drop', (event)=>{
+    event.preventDefault();
+  img2Container.appendChild(document.querySelector("#dragImg1"))
+  img1Container.appendChild(document.querySelector("#dragImg2"))
+  img2Container.removeChild(document.querySelector("#dragImg2"))
+  img1Container.removeChild(document.querySelector("#dragImg1"))
+  
+})
+
+
+img2Container.addEventListener('drop', (event)=>{
+  //event.preventDefault();
+  img1Container.appendChild(document.querySelector("#dragImg2"))
+  img2Container.appendChild(document.querySelector("#dragImg1"))
+  img1Container.removeChild(document.querySelector("#dragImg1"))
+  img2Container.removeChild(document.querySelector("#dragImg2"))
+})
 /*
 const drag=(event)=>{
 
